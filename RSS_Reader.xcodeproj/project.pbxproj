@@ -14,6 +14,11 @@
 		A84E63F31F690B5600350975 /* RSS_Reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A84E63F11F690B5600350975 /* RSS_Reader.xcdatamodeld */; };
 		A84E63F51F690B5600350975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A84E63F41F690B5600350975 /* Assets.xcassets */; };
 		A84E63F81F690B5600350975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A84E63F61F690B5600350975 /* LaunchScreen.storyboard */; };
+		A84E64001F690CD100350975 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E63FF1F690CD100350975 /* StorageManager.swift */; };
+		A84E64061F69117D00350975 /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64021F69117D00350975 /* Channel+CoreDataClass.swift */; };
+		A84E64071F69117D00350975 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64031F69117D00350975 /* Channel+CoreDataProperties.swift */; };
+		A84E64081F69117D00350975 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64041F69117D00350975 /* Article+CoreDataClass.swift */; };
+		A84E64091F69117D00350975 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64051F69117D00350975 /* Article+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		A84E63F41F690B5600350975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A84E63F71F690B5600350975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A84E63F91F690B5600350975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A84E63FF1F690CD100350975 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageManager.swift; path = Model/StorageManager.swift; sourceTree = "<group>"; };
+		A84E64021F69117D00350975 /* Channel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Channel+CoreDataClass.swift"; path = "Model/Channel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A84E64031F69117D00350975 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Channel+CoreDataProperties.swift"; path = "Model/Channel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A84E64041F69117D00350975 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Article+CoreDataClass.swift"; path = "Model/Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A84E64051F69117D00350975 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Article+CoreDataProperties.swift"; path = "Model/Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,7 @@
 			children = (
 				A84E63EA1F690B5600350975 /* AppDelegate.swift */,
 				A84E63EC1F690B5600350975 /* ViewController.swift */,
+				A84E64011F690CD500350975 /* Model */,
 				A84E63EE1F690B5600350975 /* Main.storyboard */,
 				A84E63F41F690B5600350975 /* Assets.xcassets */,
 				A84E63F61F690B5600350975 /* LaunchScreen.storyboard */,
@@ -89,6 +100,18 @@
 				A84E63F11F690B5600350975 /* RSS_Reader.xcdatamodeld */,
 			);
 			path = RSS_Reader;
+			sourceTree = "<group>";
+		};
+		A84E64011F690CD500350975 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A84E64021F69117D00350975 /* Channel+CoreDataClass.swift */,
+				A84E64031F69117D00350975 /* Channel+CoreDataProperties.swift */,
+				A84E64041F69117D00350975 /* Article+CoreDataClass.swift */,
+				A84E64051F69117D00350975 /* Article+CoreDataProperties.swift */,
+				A84E63FF1F690CD100350975 /* StorageManager.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,7 +251,12 @@
 			files = (
 				A84E63ED1F690B5600350975 /* ViewController.swift in Sources */,
 				A84E63F31F690B5600350975 /* RSS_Reader.xcdatamodeld in Sources */,
+				A84E64081F69117D00350975 /* Article+CoreDataClass.swift in Sources */,
+				A84E64071F69117D00350975 /* Channel+CoreDataProperties.swift in Sources */,
+				A84E64091F69117D00350975 /* Article+CoreDataProperties.swift in Sources */,
 				A84E63EB1F690B5600350975 /* AppDelegate.swift in Sources */,
+				A84E64061F69117D00350975 /* Channel+CoreDataClass.swift in Sources */,
+				A84E64001F690CD100350975 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RSS_Reader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ovchinnikov.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RSS_Reader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ovchinnikov.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -394,6 +424,7 @@
 				A84E63FE1F690B5600350975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
