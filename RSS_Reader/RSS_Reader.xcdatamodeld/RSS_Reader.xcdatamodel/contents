@@ -3,6 +3,7 @@
     <entity name="Article" representedClassName=".Article" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageLink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="link" attributeType="String" syncable="YES"/>
         <attribute name="pubDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
@@ -15,6 +16,6 @@
     </entity>
     <elements>
         <element name="Channel" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Article" positionX="-54" positionY="9" width="128" height="135"/>
+        <element name="Article" positionX="-54" positionY="9" width="128" height="150"/>
     </elements>
 </model>
