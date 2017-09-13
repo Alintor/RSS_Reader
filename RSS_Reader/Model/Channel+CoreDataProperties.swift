@@ -15,7 +15,7 @@ extension Channel {
     @NSManaged public var articles: NSSet?
     
     public var feed: [Article]? {
-        return articles?.sorted(by: { ($0 as! Article).pubDate.compare(($1 as! Article).pubDate as! Date) == ComparisonResult.orderedAscending }) as? [Article]
+        return articles?.sorted(by: { ($0 as! Article).pubDate.compare(($1 as! Article).pubDate as! Date) == ComparisonResult.orderedDescending }) as? [Article]
     }
 
 }

@@ -13,11 +13,24 @@ class StorageManager: NSObject {
     
     let rssParser:RSSParser
     
+    var requestTime = [String: Date]()
+    
     static let shared = StorageManager()
     
     override init() {
         rssParser = RSSParser()
         super.init()
+    }
+    
+    func canUseCacheData(prevDate:Date?) -> Bool {
+        if prevDate != nil {
+            let current = NSDate()
+            let interval = current.timeIntervalSince(prevDate!)
+            if interval < 300 {
+                return true
+            }
+        }
+        return false
     }
     
     
@@ -58,17 +71,17 @@ class StorageManager: NSObject {
         }
     }
     
-    func getChannelsWithRequest(_ request:RequestType, finish: @escaping ([Channel]?) -> Void) {
+    func getChannelsWithRequest(_ request:RequestType, useCache:Bool = true, finish: @escaping ([Channel]?) -> Void) {
         if let channels = fetchChannelsWithRequest(request) {
             let group = DispatchGroup()
             for channel in channels {
-                if channel.feed == nil ||  channel.feed?.count == 0 {
+                if channel.feed == nil ||  channel.feed?.count == 0  || !canUseCacheData(prevDate: requestTime[channel.link]) || !useCache {
                     group.enter()
                     rssParser.getRSSFeedForUrl(url: channel.link, finish: { (articles) in
                         if let articles = articles {
                             let fetchRequest =
                                 NSFetchRequest<NSManagedObject>(entityName: "Article")
-                            fetchRequest.predicate = NSPredicate(format: "channel == \(channel) && isFavorite == \(false)")
+                            fetchRequest.predicate = NSPredicate(format: "channel == %@ && isFavorite == \(false)", channel)
                             do {
                                 let fetchedEntities = try self.managedObjectContext.fetch(fetchRequest) as! [Article]
                                 
@@ -78,6 +91,7 @@ class StorageManager: NSObject {
                             } catch let error as NSError {
                                 print("Could not fetch. \(error), \(error.userInfo)")
                             }
+                            self.saveContext()
                             
                             for article in articles {
                                 let entity =
@@ -90,11 +104,13 @@ class StorageManager: NSObject {
                                 articleEntity.desc = article.desc
                                 articleEntity.imageLink = article.imageLink
                                 articleEntity.link = article.link
+                                articleEntity.pubDate = article.pubDate
                                 articleEntity.channel = channel
                                 channel.addToArticles(articleEntity)
                                 self.saveContext()
-                                group.leave()
                             }
+                            self.requestTime[channel.link] = Date()
+                            group.leave()
                         }
                     })
                     
