@@ -5,6 +5,7 @@ import Kingfisher
 
 fileprivate let CELL_NIB_NAME = "FeedItemCell"
 fileprivate let CELL_REUSE_IDENTIFIER = "FeedItemCellIdentifier"
+fileprivate let SEGUE_DETAIL = "articleDetailSegue"
 
 class FeedVC: UIViewController {
     
@@ -30,15 +31,18 @@ class FeedVC: UIViewController {
         }
         
     }
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == SEGUE_DETAIL {
+            if let article = sender as? Article {
+                let detailVC = segue.destination as! ArticleDetailVC
+                detailVC.article = article
+            }
+        }
+
     }
-    */
+ 
 
 }
 
@@ -84,5 +88,13 @@ extension FeedVC : UITableViewDataSource {
 }
 
 extension FeedVC : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let article = channels[indexPath.section].feed?[indexPath.row]
+        
+        performSegue(withIdentifier: SEGUE_DETAIL, sender: article)
+    }
     
 }

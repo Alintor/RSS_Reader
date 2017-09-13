@@ -22,6 +22,7 @@
 		A84E64111F692F4200350975 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64101F692F4200350975 /* FeedVC.swift */; };
 		A84E64151F693A3200350975 /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64131F693A3200350975 /* FeedItemCell.swift */; };
 		A84E64161F693A3200350975 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A84E64141F693A3200350975 /* FeedItemCell.xib */; };
+		A84E64191F695A4900350975 /* ArticleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64181F695A4900350975 /* ArticleDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A84E64101F692F4200350975 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedVC.swift; path = ViewControllers/FeedVC.swift; sourceTree = "<group>"; };
 		A84E64131F693A3200350975 /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItemCell.swift; path = Views/FeedItemCell.swift; sourceTree = "<group>"; };
 		A84E64141F693A3200350975 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedItemCell.xib; path = Views/FeedItemCell.xib; sourceTree = "<group>"; };
+		A84E64181F695A4900350975 /* ArticleDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleDetailVC.swift; path = ViewControllers/ArticleDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				A84E64101F692F4200350975 /* FeedVC.swift */,
+				A84E64181F695A4900350975 /* ArticleDetailVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				A84E63F31F690B5600350975 /* RSS_Reader.xcdatamodeld in Sources */,
 				A84E64151F693A3200350975 /* FeedItemCell.swift in Sources */,
 				A84E64071F69117D00350975 /* Channel+CoreDataProperties.swift in Sources */,
+				A84E64191F695A4900350975 /* ArticleDetailVC.swift in Sources */,
 				A84E63EB1F690B5600350975 /* AppDelegate.swift in Sources */,
 				A84E64061F69117D00350975 /* Channel+CoreDataClass.swift in Sources */,
 				A84E640E1F69290200350975 /* Article+CoreDataClass.swift in Sources */,
