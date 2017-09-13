@@ -1,8 +1,114 @@
 
+enum RequestType {
+    case all
+    case favorites
+    case withLink(_:String)
+}
+
+
 import UIKit
 import CoreData
 
 class StorageManager: NSObject {
+    
+    let rssParser:RSSParser
+    
+    static let shared = StorageManager()
+    
+    override init() {
+        rssParser = RSSParser()
+        super.init()
+    }
+    
+    
+    func addChannelWithTitle(title:String, link:String) {
+        let entity =
+            NSEntityDescription.entity(forEntityName: "Channel",
+                                       in: managedObjectContext)!
+        
+        let channel = NSManagedObject(entity: entity,
+                                     insertInto: managedObjectContext) as! Channel
+        channel.title = title
+        channel.link = link
+        
+        saveContext()
+        
+    }
+    
+    private func fetchChannelsWithRequest(_ request:RequestType) -> [Channel]? {
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Channel")
+        
+        switch request {
+        case .all: break
+            
+        case .favorites:
+            fetchRequest.predicate = NSPredicate(format: "articles.isFavorite == \(true)")
+            
+        case .withLink(let link):
+            fetchRequest.predicate = NSPredicate(format: "link == \(link)")
+        }
+        
+        do {
+            let sources = try managedObjectContext.fetch(fetchRequest)
+            return sources as? [Channel]
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+    
+    func getChannelsWithRequest(_ request:RequestType, finish: @escaping ([Channel]?) -> Void) {
+        if let channels = fetchChannelsWithRequest(request) {
+            let group = DispatchGroup()
+            for channel in channels {
+                if channel.feed == nil ||  channel.feed?.count == 0 {
+                    group.enter()
+                    rssParser.getRSSFeedForUrl(url: channel.link, finish: { (articles) in
+                        if let articles = articles {
+                            let fetchRequest =
+                                NSFetchRequest<NSManagedObject>(entityName: "Article")
+                            fetchRequest.predicate = NSPredicate(format: "channel == \(channel) && isFavorite == \(false)")
+                            do {
+                                let fetchedEntities = try self.managedObjectContext.fetch(fetchRequest) as! [Article]
+                                
+                                for entity in fetchedEntities {
+                                    self.managedObjectContext.delete(entity)
+                                }
+                            } catch let error as NSError {
+                                print("Could not fetch. \(error), \(error.userInfo)")
+                            }
+                            
+                            for article in articles {
+                                let entity =
+                                    NSEntityDescription.entity(forEntityName: "Article",
+                                                               in: self.managedObjectContext)!
+                                
+                                let articleEntity = NSManagedObject(entity: entity,
+                                                                    insertInto: self.managedObjectContext) as! Article
+                                articleEntity.title = article.title
+                                articleEntity.desc = article.desc
+                                articleEntity.imageLink = article.imageLink
+                                articleEntity.link = article.link
+                                articleEntity.channel = channel
+                                channel.addToArticles(articleEntity)
+                                self.saveContext()
+                                group.leave()
+                            }
+                        }
+                    })
+                    
+                }
+            }
+            group.notify(queue: .main, execute: {
+                finish(channels)
+            })
+            
+        } else {
+            finish(nil)
+        }
+        
+    }
     
     
     
