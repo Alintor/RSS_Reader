@@ -29,7 +29,6 @@ class ArticleDetailVC: UIViewController {
         } else {
             imageHeight.constant = titleViewHeight.constant
         }
-        
     }
 
 

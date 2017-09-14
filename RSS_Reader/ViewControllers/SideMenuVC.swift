@@ -22,21 +22,27 @@ class SideMenuVC: UIViewController {
     }
     
     @IBAction func allFeedsAction(_ sender: Any) {
+        sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.all)
+    }
+
+    @IBAction func favoriteFeedsAction(_ sender: Any) {
+        sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.favorites)
     }
     
-    @IBOutlet weak var favoriteFeedAction: UIButton!
 
     
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == SEGUE_CENTER_CONTROLLER {
+            if let feedVC = segue.destination as? FeedVC,
+                let requestType = sender as? RequestType {
+                feedVC.requestType = requestType
+            }
+        }
     }
-    */
+    
 
 }
 
@@ -55,6 +61,18 @@ extension SideMenuVC : UITableViewDataSource {
         cell.textLabel?.text = channel.title
         
         return cell
+    }
+    
+}
+
+extension SideMenuVC : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let channel = channels[indexPath.row]
+        
+        sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.withLink(channel.link))
     }
     
 }

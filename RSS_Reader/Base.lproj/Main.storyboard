@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q7j-sG-VOa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JD4-iy-MoI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,11 +70,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="YfY-Pf-uSo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9q-O8-bFU">
-                                            <rect key="frame" x="12" y="54" width="70" height="33"/>
+                                            <rect key="frame" x="12" y="76" width="70" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="33" id="6JM-Y9-tnv"/>
                                             </constraints>
@@ -82,9 +82,12 @@
                                             <state key="normal" title="Favorites">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="favoriteFeedsAction:" destination="Ceh-zj-urg" eventType="touchUpInside" id="7J4-4S-Xaz"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8T-Ib-bE0">
-                                            <rect key="frame" x="12" y="8" width="70" height="33"/>
+                                            <rect key="frame" x="12" y="30" width="70" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="33" id="1Pc-7A-DiU"/>
                                             </constraints>
@@ -103,12 +106,12 @@
                                         <constraint firstItem="B9q-O8-bFU" firstAttribute="leading" secondItem="YfY-Pf-uSo" secondAttribute="leading" constant="12" id="MWN-WB-zwR"/>
                                         <constraint firstItem="P8T-Ib-bE0" firstAttribute="leading" secondItem="YfY-Pf-uSo" secondAttribute="leading" constant="12" id="iAf-hT-Spn"/>
                                         <constraint firstItem="B9q-O8-bFU" firstAttribute="top" secondItem="P8T-Ib-bE0" secondAttribute="bottom" constant="13" id="ozj-LK-bcY"/>
-                                        <constraint firstItem="P8T-Ib-bE0" firstAttribute="top" secondItem="YfY-Pf-uSo" secondAttribute="top" constant="8" id="yhl-0v-9k5"/>
+                                        <constraint firstItem="P8T-Ib-bE0" firstAttribute="top" secondItem="YfY-Pf-uSo" secondAttribute="top" constant="30" id="yhl-0v-9k5"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="8RN-5K-lZS">
-                                        <rect key="frame" x="0.0" y="135" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="157" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8RN-5K-lZS" id="Trw-p7-rmw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -135,13 +138,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="RSS Reader" id="KuI-7b-0UC"/>
                     <connections>
-                        <outlet property="favoriteFeedAction" destination="B9q-O8-bFU" id="f2d-Wr-M4Q"/>
                         <outlet property="tableView" destination="wrv-RM-MvC" id="nTJ-L6-oj7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GB2-jh-USx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="36"/>
+            <point key="canvasLocation" x="804" y="35.532233883058474"/>
         </scene>
         <!--Article DetailVC-->
         <scene sceneID="o7F-BK-FKE">
@@ -263,6 +265,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUh-wd-TKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="112.8" y="-645.42728635682158"/>
+        </scene>
+        <!--Side Menu Container-->
+        <scene sceneID="OfN-Ww-jLq">
+            <objects>
+                <viewController id="JD4-iy-MoI" customClass="SideMenuContainer" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AFz-I4-pro"/>
+                        <viewControllerLayoutGuide type="bottom" id="0fk-qY-qba"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V1p-b9-uLw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="8ed-sv-o2A" kind="custom" identifier="embedCenterController" customClass="CenterContainmentSegue" customModule="SideMenuController" id="uEh-4k-LVM"/>
+                        <segue destination="Q7j-sG-VOa" kind="custom" identifier="embedSideController" customClass="SideContainmentSegue" customModule="SideMenuController" id="BIk-pT-DiZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o4c-Mp-pI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-730" y="-251"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eWM-B3-ZF3">

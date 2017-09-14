@@ -22,7 +22,7 @@ class StorageManager: NSObject {
         super.init()
     }
     
-    func canUseCacheData(prevDate:Date?) -> Bool {
+    private func canUseCacheData(prevDate:Date?) -> Bool {
         if prevDate != nil {
             let current = NSDate()
             let interval = current.timeIntervalSince(prevDate!)
@@ -56,10 +56,10 @@ class StorageManager: NSObject {
         case .all: break
             
         case .favorites:
-            fetchRequest.predicate = NSPredicate(format: "articles.isFavorite == \(true)")
+            fetchRequest.predicate = NSPredicate(format: "ANY articles.isFavorite == %@", NSNumber(booleanLiteral: true))
             
         case .withLink(let link):
-            fetchRequest.predicate = NSPredicate(format: "link == \(link)")
+            fetchRequest.predicate = NSPredicate(format: "link == %@", link)
         }
         
         do {
