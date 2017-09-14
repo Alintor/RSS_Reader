@@ -25,6 +25,7 @@
 		A84E64191F695A4900350975 /* ArticleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E64181F695A4900350975 /* ArticleDetailVC.swift */; };
 		A84E641B1F6966C600350975 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E641A1F6966C600350975 /* SideMenuVC.swift */; };
 		A84E641D1F696F8A00350975 /* SideMenuContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E641C1F696F8A00350975 /* SideMenuContainer.swift */; };
+		A84E641F1F6A4B9A00350975 /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E641E1F6A4B9A00350975 /* AddChannelVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		A84E64181F695A4900350975 /* ArticleDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleDetailVC.swift; path = ViewControllers/ArticleDetailVC.swift; sourceTree = "<group>"; };
 		A84E641A1F6966C600350975 /* SideMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideMenuVC.swift; path = ViewControllers/SideMenuVC.swift; sourceTree = "<group>"; };
 		A84E641C1F696F8A00350975 /* SideMenuContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideMenuContainer.swift; path = ViewControllers/SideMenuContainer.swift; sourceTree = "<group>"; };
+		A84E641E1F6A4B9A00350975 /* AddChannelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddChannelVC.swift; path = ViewControllers/AddChannelVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				A84E64181F695A4900350975 /* ArticleDetailVC.swift */,
 				A84E641A1F6966C600350975 /* SideMenuVC.swift */,
 				A84E641C1F696F8A00350975 /* SideMenuContainer.swift */,
+				A84E641E1F6A4B9A00350975 /* AddChannelVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				A84E640B1F69141500350975 /* RSSParser.swift in Sources */,
 				A84E64111F692F4200350975 /* FeedVC.swift in Sources */,
+				A84E641F1F6A4B9A00350975 /* AddChannelVC.swift in Sources */,
 				A84E641B1F6966C600350975 /* SideMenuVC.swift in Sources */,
 				A84E640F1F69290200350975 /* Article+CoreDataProperties.swift in Sources */,
 				A84E63F31F690B5600350975 /* RSS_Reader.xcdatamodeld in Sources */,

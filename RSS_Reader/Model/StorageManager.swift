@@ -81,7 +81,7 @@ class StorageManager: NSObject {
                         if let articles = articles {
                             let fetchRequest =
                                 NSFetchRequest<NSManagedObject>(entityName: "Article")
-                            fetchRequest.predicate = NSPredicate(format: "channel == %@ && isFavorite == \(false)", channel)
+                            fetchRequest.predicate = NSPredicate(format: "channel == %@ && isFavorite == %@", channel, NSNumber(booleanLiteral: false))
                             do {
                                 let fetchedEntities = try self.managedObjectContext.fetch(fetchRequest) as! [Article]
                                 
