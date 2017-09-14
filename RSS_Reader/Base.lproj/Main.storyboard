@@ -12,7 +12,7 @@
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FeedVC" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="FeedVC" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,31 +22,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zG2-a3-oZ7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="R4h-jb-O5h"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="UhR-Df-K6S"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="c6j-be-ErJ">
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="35b-9L-0ey"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zG2-a3-oZ7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="84B-7g-1I2"/>
-                            <constraint firstItem="zG2-a3-oZ7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XYR-Dg-2jY"/>
+                            <constraint firstItem="c6j-be-ErJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gi3-gj-m5S"/>
+                            <constraint firstAttribute="trailing" secondItem="c6j-be-ErJ" secondAttribute="trailing" id="MZa-9f-eVt"/>
+                            <constraint firstItem="zG2-a3-oZ7" firstAttribute="top" secondItem="c6j-be-ErJ" secondAttribute="bottom" id="gMm-o7-vSE"/>
                             <constraint firstAttribute="trailing" secondItem="zG2-a3-oZ7" secondAttribute="trailing" id="gcq-uC-IFC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zG2-a3-oZ7" secondAttribute="bottom" id="lWC-5R-JBf"/>
+                            <constraint firstItem="c6j-be-ErJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tvt-i5-Q0x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="1Dp-ux-hng"/>
                     <connections>
+                        <outlet property="searchBar" destination="c6j-be-ErJ" id="F4k-g3-I1F"/>
                         <outlet property="tableView" destination="zG2-a3-oZ7" id="2ig-P8-Mjt"/>
                         <segue destination="ksh-Fn-pcT" kind="show" identifier="articleDetailSegue" id="Xba-zY-2Y8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="-645.42728635682158"/>
+            <point key="canvasLocation" x="850.72463768115949" y="-645.6521739130435"/>
         </scene>
         <!--RSS Reader-->
         <scene sceneID="cGN-Ba-jtx">
@@ -118,7 +129,7 @@
                                         <rect key="frame" x="0.0" y="157" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8RN-5K-lZS" id="Trw-p7-rmw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -374,6 +385,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pZs-QD-kqP">
+                        <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="z63-O1-BTn"/>
                     </connections>

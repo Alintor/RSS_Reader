@@ -10,6 +10,8 @@ fileprivate let SEGUE_DETAIL = "articleDetailSegue"
 class FeedVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     var channels = [FeedGroup]()
     
@@ -21,7 +23,6 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
         navigationItem.title = titleName
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
         if case RequestType.favorites = requestType {
@@ -32,13 +33,19 @@ class FeedVC: UIViewController {
         
     }
     
-    func refreshData() {
-        StorageManager.shared.getChannelsWithRequest(requestType) { (results) in
+    func refreshData(useCache:Bool = true) {
+        
+        
+        var searchText = searchBar.text
+        if searchText == "" {
+            searchText = nil
+        }
+        StorageManager.shared.getChannelsWithRequest(requestType, andTitleContains: searchText, useCache: useCache, finish: { (results) in
             if let results = results {
                 self.channels = results
                 self.tableView.reloadData()
             }
-        }
+        })
     }
     
     // MARK: - Navigation
@@ -113,4 +120,32 @@ extension FeedVC : UITableViewDelegate {
         performSegue(withIdentifier: SEGUE_DETAIL, sender: article)
     }
     
+}
+
+extension FeedVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        refreshData()
+        
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(false, animated: true)
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        refreshData()
+    }
 }

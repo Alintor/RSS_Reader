@@ -75,42 +75,75 @@ class StorageManager: NSObject {
         
     }
     
-    private func fetchFeedGroupsWithRequest(_ request:RequestType) -> [FeedGroup]? {
-        let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Channel")
-        
+//    private func fetchFeedGroupsWithRequest(_ request:RequestType, andTitleContains title:String? = nil) -> [FeedGroup]? {
+//        let fetchRequest =
+//            NSFetchRequest<NSManagedObject>(entityName: "Channel")
+//        
+//        switch request {
+//        case .all: break
+//            
+//            
+//        case .withLink(let link):
+//            fetchRequest.predicate = NSPredicate(format: "link == %@", link)
+//        
+//        case .favorites:
+//            let articlesFetchRequest =
+//                NSFetchRequest<NSManagedObject>(entityName: "Article")
+//            articlesFetchRequest.predicate = NSPredicate(format: "isFavorite == %@", NSNumber(booleanLiteral: true))
+//            do {
+//                let articles = try self.managedObjectContext.fetch(articlesFetchRequest) as! [Article]
+//                return groupArticles(articles)
+//                
+//            } catch let error as NSError {
+//                print("Could not fetch. \(error), \(error.userInfo)")
+//            }
+//        }
+//        
+//        do {
+//            let channels = try managedObjectContext.fetch(fetchRequest) as! [Channel]
+//            var groups = [FeedGroup]()
+//            for channel in channels {
+//                groups.append(FeedGroup(channel: channel))
+//            }
+//            return groups
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//            return nil
+//        }
+//    }
+    
+    func fetchGroupOfArticlesWithRequest(_ request:RequestType, andTitleContains title:String? = nil) -> [FeedGroup]? {
+        let articlesFetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Article")
         switch request {
-        case .all: break
-            
-            
-        case .withLink(let link):
-            fetchRequest.predicate = NSPredicate(format: "link == %@", link)
-        
+        case .all:
+            if let title = title {
+                articlesFetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", title)
+            }
         case .favorites:
-            let articlesFetchRequest =
-                NSFetchRequest<NSManagedObject>(entityName: "Article")
-            articlesFetchRequest.predicate = NSPredicate(format: "isFavorite == %@", NSNumber(booleanLiteral: true))
-            do {
-                let articles = try self.managedObjectContext.fetch(articlesFetchRequest) as! [Article]
-                return groupArticles(articles)
-                
-            } catch let error as NSError {
-                print("Could not fetch. \(error), \(error.userInfo)")
+            if let title = title {
+                articlesFetchRequest.predicate = NSPredicate(format: "isFavorite == %@ AND title CONTAINS[c] %@", NSNumber(booleanLiteral: true), title)
+            } else {
+                articlesFetchRequest.predicate = NSPredicate(format: "isFavorite == %@", NSNumber(booleanLiteral: true))
+            }
+        case .withLink(let link):
+            if let title = title {
+                articlesFetchRequest.predicate = NSPredicate(format: "channel.link == %@ AND title CONTAINS[c] %@", link, title)
+            } else {
+                articlesFetchRequest.predicate = NSPredicate(format: "channel.link == %@", link)
             }
         }
         
         do {
-            let channels = try managedObjectContext.fetch(fetchRequest) as! [Channel]
-            var groups = [FeedGroup]()
-            for channel in channels {
-                groups.append(FeedGroup(channel: channel))
-            }
-            return groups
+            let articles = try self.managedObjectContext.fetch(articlesFetchRequest) as! [Article]
+            return groupArticles(articles)
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil
         }
     }
+    
     
     private func fetchChannels() -> [Channel]? {
         let fetchRequest =
@@ -260,7 +293,7 @@ class StorageManager: NSObject {
     
     
     
-    func getChannelsWithRequest(_ request:RequestType, useCache:Bool = true, finish: @escaping ([FeedGroup]?) -> Void) {
+    func getChannelsWithRequest(_ request:RequestType, andTitleContains title:String? = nil, useCache:Bool = true, finish: @escaping ([FeedGroup]?) -> Void) {
         if let channels = fetchChannels() {
             let group = DispatchGroup()
             for channel in channels {
@@ -297,7 +330,7 @@ class StorageManager: NSObject {
                 }
             }
             group.notify(queue: .main, execute: {
-                if let groups = self.fetchFeedGroupsWithRequest(request) {
+                if let groups = self.fetchGroupOfArticlesWithRequest(request, andTitleContains: title) {
                     finish(groups)
                 } else {
                     finish(nil)
