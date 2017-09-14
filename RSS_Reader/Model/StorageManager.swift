@@ -80,7 +80,7 @@ class StorageManager: NSObject {
     
     
     func addChannelWithLink(_ link:String, finish: @escaping (SimpleResponse) -> Void) {
-        if isChannelExistWithLink(link) {
+        if checkExistenceOfEntity(String(describing: Channel.self), withLink: link) {
             finish(SimpleResponse.failure(errorText: "Already Exist"))
         } else {
         
@@ -132,9 +132,9 @@ class StorageManager: NSObject {
         
     }
     
-    private func isChannelExistWithLink(_ link:String) -> Bool {
+    private func checkExistenceOfEntity(_ entittyName:String, withLink link:String) -> Bool {
         let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "Channel")
+            NSFetchRequest<NSManagedObject>(entityName: entittyName)
         fetchRequest.predicate = NSPredicate(format: "link == %@", link)
         
         do {
@@ -148,11 +148,28 @@ class StorageManager: NSObject {
             print("Could not fetch. \(error), \(error.userInfo)")
             return false
         }
+    }
+    
+    
+    func manageFavoriteArticleWithLink(_ link:String) {
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Article")
+        fetchRequest.predicate = NSPredicate(format: "link == %@", link)
         
+        do {
+            let articles = try managedObjectContext.fetch(fetchRequest)
+            if let article = articles.first as? Article {
+                article.isFavorite = !(article.isFavorite)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
         
-        
+        saveContext()
         
     }
+    
+    
     
     func getChannelsWithRequest(_ request:RequestType, useCache:Bool = true, finish: @escaping ([Channel]?) -> Void) {
         if let channels = fetchChannelsWithRequest(request) {
@@ -177,20 +194,23 @@ class StorageManager: NSObject {
                             self.saveContext()
                             
                             for article in articles {
-                                let entity =
-                                    NSEntityDescription.entity(forEntityName: "Article",
+                                
+                                if !(self.checkExistenceOfEntity(String(describing: Article.self), withLink: article.link)) {
+                                    let entity =
+                                        NSEntityDescription.entity(forEntityName: "Article",
                                                                in: self.managedObjectContext)!
                                 
-                                let articleEntity = NSManagedObject(entity: entity,
+                                    let articleEntity = NSManagedObject(entity: entity,
                                                                     insertInto: self.managedObjectContext) as! Article
-                                articleEntity.title = article.title
-                                articleEntity.desc = article.desc
-                                articleEntity.imageLink = article.imageLink
-                                articleEntity.link = article.link
-                                articleEntity.pubDate = article.pubDate
-                                articleEntity.channel = channel
-                                channel.addToArticles(articleEntity)
-                                self.saveContext()
+                                    articleEntity.title = article.title
+                                    articleEntity.desc = article.desc
+                                    articleEntity.imageLink = article.imageLink
+                                    articleEntity.link = article.link
+                                    articleEntity.pubDate = article.pubDate
+                                    articleEntity.channel = channel
+                                    channel.addToArticles(articleEntity)
+                                    self.saveContext()
+                                }
                             }
                             self.requestTime[channel.link] = Date()
                             group.leave()
