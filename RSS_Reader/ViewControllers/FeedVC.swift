@@ -11,7 +11,7 @@ class FeedVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var channels = [Channel]()
+    var channels = [FeedGroup]()
     
     var requestType = RequestType.all
     var titleName = "All feed"
@@ -23,6 +23,10 @@ class FeedVC: UIViewController {
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
+        
+        if case RequestType.favorites = requestType {
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_FAVORITES_NOTIFICATION), object: nil)
+        }
         
         refreshData()
         
@@ -72,22 +76,22 @@ extension FeedVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (channels[section].feed?.count)!
+        return channels[section].feed.count
         
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let article = channels[indexPath.section].feed?[indexPath.row]
+        let article = channels[indexPath.section].feed[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_REUSE_IDENTIFIER, for: indexPath) as! FeedItemCell
-        cell.title.text = article?.title
-        cell.desc.text = article?.desc
+        cell.title.text = article.title
+        cell.desc.text = article.desc
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
-        cell.date.text = dateFormatter.string(from: article!.pubDate as Date)
+        cell.date.text = dateFormatter.string(from: article.pubDate as Date)
         
-        if let imageLink = article?.imageLink {
+        if let imageLink = article.imageLink {
             cell.itemImage.kf.indicatorType = .activity
             cell.itemImage.kf.setImage(with: URL(string: imageLink))
             cell.hideImage(false)
@@ -104,7 +108,7 @@ extension FeedVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let article = channels[indexPath.section].feed?[indexPath.row]
+        let article = channels[indexPath.section].feed[indexPath.row]
         
         performSegue(withIdentifier: SEGUE_DETAIL, sender: article)
     }

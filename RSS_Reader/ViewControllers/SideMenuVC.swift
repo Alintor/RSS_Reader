@@ -6,7 +6,7 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var channels = [Channel]()
+    var channels = [FeedGroup]()
     
 
     override func viewDidLoad() {
