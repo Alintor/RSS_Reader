@@ -18,6 +18,8 @@ class FeedVC: UIViewController {
     var requestType = RequestType.all
     var titleName = "All feed"
     
+    var refreshControl: UIRefreshControl!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +31,21 @@ class FeedVC: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_FAVORITES_NOTIFICATION), object: nil)
         }
         
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        
         refreshData()
         
     }
+    
+    func updateData() {
+        refreshData(useCache: false)
+        refreshControl.endRefreshing()
+    }
+    
+    
     
     func refreshData(useCache:Bool = true) {
         
