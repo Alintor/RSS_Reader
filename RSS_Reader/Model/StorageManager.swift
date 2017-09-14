@@ -5,6 +5,12 @@ enum RequestType {
     case withLink(_:String)
 }
 
+enum SimpleResponse {
+    case success
+    case failure(errorText:String)
+}
+
+let UPDATE_CHANNELS_NOTIFICATION = "UpdateChannelsNotification"
 
 import UIKit
 import CoreData
@@ -34,7 +40,7 @@ class StorageManager: NSObject {
     }
     
     
-    func addChannelWithTitle(title:String, link:String) {
+    private func addChannelWithTitle(title:String, link:String) {
         let entity =
             NSEntityDescription.entity(forEntityName: "Channel",
                                        in: managedObjectContext)!
@@ -45,6 +51,7 @@ class StorageManager: NSObject {
         channel.link = link
         
         saveContext()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
     }
     
@@ -63,12 +70,53 @@ class StorageManager: NSObject {
         }
         
         do {
-            let sources = try managedObjectContext.fetch(fetchRequest)
-            return sources as? [Channel]
+            let channels = try managedObjectContext.fetch(fetchRequest)
+            return channels as? [Channel]
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil
         }
+    }
+    
+    
+    func addChannelWithLink(_ link:String, finish: @escaping (SimpleResponse) -> Void) {
+        if isChannelExistWithLink(link) {
+            finish(SimpleResponse.failure(errorText: "Already Exist"))
+        } else {
+        
+            rssParser.getChannelTitleFromLink(link) { (channelTitle) in
+                if let title = channelTitle {
+                    self.addChannelWithTitle(title: title, link: link)
+                    finish(.success)
+                } else {
+                    finish(.failure(errorText: "It's not RSS!"))
+                }
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    private func isChannelExistWithLink(_ link:String) -> Bool {
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Channel")
+        fetchRequest.predicate = NSPredicate(format: "link == %@", link)
+        
+        do {
+            let channels = try managedObjectContext.fetch(fetchRequest)
+            if channels.first != nil {
+                return true
+            } else {
+                return false
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return false
+        }
+        
+        
     }
     
     func getChannelsWithRequest(_ request:RequestType, useCache:Bool = true, finish: @escaping ([Channel]?) -> Void) {

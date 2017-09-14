@@ -10,7 +10,7 @@
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="articles" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <entity name="Channel" representedClassName=".Channel" syncable="YES">
-        <attribute name="link" attributeType="String" syncable="YES"/>
+        <attribute name="link" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="channel" inverseEntity="Article" syncable="YES"/>
     </entity>

@@ -12,12 +12,10 @@ class SideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        StorageManager.shared.getChannelsWithRequest(.all) { (results) in
-            if let results = results {
-                self.channels = results
-                self.tableView.reloadData()
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChannels), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
+        
+        updateChannels()
+        
 
     }
     
@@ -27,6 +25,15 @@ class SideMenuVC: UIViewController {
 
     @IBAction func favoriteFeedsAction(_ sender: Any) {
         sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.favorites)
+    }
+    
+    func updateChannels() {
+        StorageManager.shared.getChannelsWithRequest(.all) { (results) in
+            if let results = results {
+                self.channels = results
+                self.tableView.reloadData()
+            }
+        }
     }
     
 

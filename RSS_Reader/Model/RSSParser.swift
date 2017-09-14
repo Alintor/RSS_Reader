@@ -46,5 +46,24 @@ class RSSParser: NSObject {
         }
         
     }
+    
+    func getChannelTitleFromLink(_ link:String, finish: @escaping (String?) -> Void) {
+        Alamofire.request(link).responseString { response in
+            switch response.result {
+            case .success:
+                
+                let xml = SWXMLHash.parse(response.data!)
+                if let channelTitle = xml["rss"]["channel"]["title"].element?.text {
+                    finish(channelTitle)
+                } else {
+                    finish(nil)
+                }
+                
+            case .failure:
+                print(response.error!.localizedDescription)
+                finish(nil)
+            }
+        }
+    }
 
 }

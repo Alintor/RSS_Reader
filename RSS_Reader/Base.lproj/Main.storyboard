@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -166,23 +165,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-4K-Sda">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="282.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="307.5"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="ZLh-99-eVP"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DY0-Bf-Pgq">
-                                        <rect key="frame" x="67" y="283.5" width="240" height="100"/>
+                                        <rect key="frame" x="67" y="308.5" width="240" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Channel title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQy-Nc-H8B">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Channel URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UwD-1X-qik">
-                                                <rect key="frame" x="0.0" y="51" width="240" height="49"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -190,32 +183,31 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="JQy-Nc-H8B" secondAttribute="trailing" id="9k5-SD-xKl"/>
-                                            <constraint firstItem="UwD-1X-qik" firstAttribute="top" secondItem="JQy-Nc-H8B" secondAttribute="bottom" constant="1" id="JPl-cn-8fk"/>
-                                            <constraint firstItem="JQy-Nc-H8B" firstAttribute="height" secondItem="DY0-Bf-Pgq" secondAttribute="height" multiplier="0.5" id="Kis-Uh-9WM"/>
-                                            <constraint firstAttribute="height" constant="100" id="VZ8-hC-zuM"/>
-                                            <constraint firstItem="JQy-Nc-H8B" firstAttribute="leading" secondItem="DY0-Bf-Pgq" secondAttribute="leading" id="YPg-LZ-CrO"/>
+                                            <constraint firstAttribute="height" constant="50" id="VZ8-hC-zuM"/>
                                             <constraint firstAttribute="trailing" secondItem="UwD-1X-qik" secondAttribute="trailing" id="aVK-Cy-h1C"/>
                                             <constraint firstAttribute="bottom" secondItem="UwD-1X-qik" secondAttribute="bottom" id="cwh-zk-eLi"/>
                                             <constraint firstItem="UwD-1X-qik" firstAttribute="leading" secondItem="DY0-Bf-Pgq" secondAttribute="leading" id="dhs-a8-bX0"/>
                                             <constraint firstAttribute="width" constant="240" id="oyA-K5-Dqs"/>
-                                            <constraint firstItem="JQy-Nc-H8B" firstAttribute="top" secondItem="DY0-Bf-Pgq" secondAttribute="top" id="s6R-uz-afW"/>
+                                            <constraint firstItem="UwD-1X-qik" firstAttribute="top" secondItem="DY0-Bf-Pgq" secondAttribute="top" id="xw3-Hg-gw4"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaT-Ar-mxi">
-                                        <rect key="frame" x="67" y="384.5" width="240" height="54"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaT-Ar-mxi">
+                                        <rect key="frame" x="67" y="359.5" width="240" height="54"/>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="qJf-ZK-oyO"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REF-fQ-5m3">
-                                        <rect key="frame" x="164" y="446.5" width="46" height="30"/>
+                                        <rect key="frame" x="164" y="421.5" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="1wo-X7-Xpy"/>
                                             <constraint firstAttribute="height" constant="30" id="8Q2-fj-fQP"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="addButtonAction:" destination="Ob6-nu-1Ei" eventType="touchUpInside" id="YyU-OZ-ARv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -252,9 +244,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButtonAction" destination="REF-fQ-5m3" id="sF9-hx-Lrk"/>
                         <outlet property="channelLinkField" destination="UwD-1X-qik" id="TOg-G5-GiS"/>
-                        <outlet property="channelTitleField" destination="JQy-Nc-H8B" id="RTf-gA-DWH"/>
                         <outlet property="errorView" destination="KaT-Ar-mxi" id="rbc-wX-UF4"/>
                         <outlet property="textFieldsView" destination="DY0-Bf-Pgq" id="zHq-pU-LFo"/>
                     </connections>

@@ -22,15 +22,21 @@ class FeedVC: UIViewController {
         navigationItem.title = titleName
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateChannels), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
+        updateChannels()
+        
+    }
+    
+    func updateChannels() {
         StorageManager.shared.getChannelsWithRequest(requestType) { (results) in
             if let results = results {
                 self.channels = results
                 self.tableView.reloadData()
             }
         }
-        
     }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,7 +61,13 @@ extension FeedVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return channels[section].title
+        switch requestType {
+        case .all, .favorites:
+            return channels[section].title
+        default:
+            return nil
+        }
+        
         
     }
     
