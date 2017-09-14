@@ -12,9 +12,9 @@ class SideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateChannels), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
-        updateChannels()
+        refreshData()
         
 
     }
@@ -27,7 +27,7 @@ class SideMenuVC: UIViewController {
         sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.favorites)
     }
     
-    func updateChannels() {
+    func refreshData() {
         StorageManager.shared.getChannelsWithRequest(.all) { (results) in
             if let results = results {
                 self.channels = results
@@ -68,6 +68,17 @@ extension SideMenuVC : UITableViewDataSource {
         cell.textLabel?.text = channel.title
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let channel = channels[indexPath.row]
+            StorageManager.shared.deleteChannelWithLink(channel.link)
+        }
     }
     
 }

@@ -97,7 +97,40 @@ class StorageManager: NSObject {
         
     }
     
-    
+    func deleteChannelWithLink(_ link:String) {
+        let chanelFetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Channel")
+        chanelFetchRequest.predicate = NSPredicate(format: "link == %@", link)
+        
+        do {
+            let channels = try managedObjectContext.fetch(chanelFetchRequest)
+            if let channel = channels.first {
+                self.managedObjectContext.delete(channel)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        
+        let articlesFetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "Article")
+        articlesFetchRequest.predicate = NSPredicate(format: "channel.link == %@ && isFavorite == %@", link, NSNumber(booleanLiteral: false))
+        do {
+            let fetchedEntities = try self.managedObjectContext.fetch(articlesFetchRequest) as! [Article]
+            
+            for entity in fetchedEntities {
+                self.managedObjectContext.delete(entity)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        saveContext()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
+        
+        
+    }
     
     private func isChannelExistWithLink(_ link:String) -> Bool {
         let fetchRequest =
@@ -115,6 +148,8 @@ class StorageManager: NSObject {
             print("Could not fetch. \(error), \(error.userInfo)")
             return false
         }
+        
+        
         
         
     }

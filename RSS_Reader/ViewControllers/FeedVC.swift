@@ -22,13 +22,13 @@ class FeedVC: UIViewController {
         navigationItem.title = titleName
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateChannels), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
-        updateChannels()
+        refreshData()
         
     }
     
-    func updateChannels() {
+    func refreshData() {
         StorageManager.shared.getChannelsWithRequest(requestType) { (results) in
             if let results = results {
                 self.channels = results
