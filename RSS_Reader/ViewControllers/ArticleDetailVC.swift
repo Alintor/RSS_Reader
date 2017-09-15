@@ -18,9 +18,13 @@ class ArticleDetailVC: UIViewController {
     
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var titleViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var articleCardView: UIView!
+    
     
     var article:Article!
     var delegate:ArticleDetailFlipper?
+    
+    var cardViewFrame:CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +73,39 @@ class ArticleDetailVC: UIViewController {
     @IBAction func goNextArticle(_ sender: Any) {
         if let nextArticle = delegate?.nextArticle() {
             article = nextArticle
-            refreshData()
+            
+            //Animate flipping
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                self.cardViewFrame = self.articleCardView.frame
+                self.articleCardView.frame.origin.y = -self.articleCardView.frame.height
+            }, completion: { (finished) in
+                self.refreshData()
+                self.articleCardView.frame.origin.y = self.view.frame.height
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                    self.articleCardView.frame = self.cardViewFrame!
+                }, completion: nil)
+            })
         }
     }
     
     @IBAction func goPrevArticle(_ sender: Any) {
         if let prevArticle = delegate?.prevArticle() {
             article = prevArticle
-            refreshData()
+            
+            //Animate flipping
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+                self.cardViewFrame = self.articleCardView.frame
+                self.articleCardView.frame.origin.y = self.view.frame.height
+            }, completion: { (finished) in
+                self.refreshData()
+                self.articleCardView.frame.origin.y = -self.articleCardView.frame.height
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                    self.articleCardView.frame = self.cardViewFrame!
+                }, completion: nil)
+            })
         }
     }
+    
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

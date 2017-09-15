@@ -523,6 +523,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="articleCardView" destination="wWD-ov-9FO" id="pBF-4m-isE"/>
                         <outlet property="articleDescription" destination="kC4-zV-44h" id="Opk-Ea-Du2"/>
                         <outlet property="articleImage" destination="Eiu-i6-IKz" id="3bC-uF-YgK"/>
                         <outlet property="articleTitle" destination="GVg-Uy-rTs" id="2LD-Uh-C1l"/>
