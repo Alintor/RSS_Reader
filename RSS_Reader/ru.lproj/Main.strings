@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7fw-Zz-xci"; */
+"7fw-Zz-xci.text" = "Label";
+
+/* Class = "UILabel"; text = "Favorites"; ObjectID = "FJC-DP-941"; */
+"FJC-DP-941.text" = "Favorites";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GVg-Uy-rTs"; */
+"GVg-Uy-rTs.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "RSS Reader"; ObjectID = "KuI-7b-0UC"; */
+"KuI-7b-0UC.title" = "RSS Reader";
+
+/* Class = "UIButton"; normalTitle = "Enter"; ObjectID = "REF-fQ-5m3"; */
+"REF-fQ-5m3.normalTitle" = "Enter";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "U2f-gB-lwJ"; */
+"U2f-gB-lwJ.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Channel URL"; ObjectID = "UwD-1X-qik"; */
+"UwD-1X-qik.placeholder" = "Channel URL";
+
+/* Class = "UILabel"; text = "All Feed"; ObjectID = "jwd-7U-eSE"; */
+"jwd-7U-eSE.text" = "All Feed";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"; ObjectID = "kC4-zV-44h"; */
+"kC4-zV-44h.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,";
+
+/* Class = "UILabel"; text = "Enter URL of the channel to add it"; ObjectID = "m5k-oh-QJC"; */
+"m5k-oh-QJC.text" = "Enter URL of the channel to add it";
+
+/* Class = "UIButton"; normalTitle = "Open in Browser"; ObjectID = "sPi-ua-wXl"; */
+"sPi-ua-wXl.normalTitle" = "Open in Browser";
