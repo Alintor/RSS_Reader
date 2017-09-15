@@ -18,7 +18,6 @@ class SideMenuVC: UIViewController {
         favoritesLbl.text = NSLocalizedString("Favorites", comment: "")
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
-        
         refreshData()
     }
     
