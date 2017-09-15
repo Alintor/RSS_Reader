@@ -1,0 +1,16 @@
+
+"All_feeds" = "All feeds";
+"Favorites" = "Favorites";
+"Channels" = "Channels";
+"Add_channel_text" = "Enter URL of the channel to add";
+"Add" = "Add";
+"Search" = "Search";
+"Open_browser" = "Open in Browser";
+"Empty_favorites" = "There ara not favorite articles. Add some article to Favorites to see it here";
+"Empty_feeds" = "There ara not feeds";
+"Error_empty_field" = "Enter channel URL address";
+"Error_already_exist" = "This channel already exists";
+"Error_not_correct_url" = "This URL is not correct";
+"Error_not_rss" = "This URL address not RSS";
+"URL_address" = "URL address";
+"Unknown" = "UNKNOWN";

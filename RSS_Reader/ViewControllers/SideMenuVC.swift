@@ -5,12 +5,17 @@ import UIKit
 class SideMenuVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var allFeedLbl: UILabel!
+    @IBOutlet weak var favoritesLbl: UILabel!
     
     var channels = [FeedGroup]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        allFeedLbl.text = NSLocalizedString("All_feeds", comment: "")
+        favoritesLbl.text = NSLocalizedString("Favorites", comment: "")
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
@@ -68,7 +73,7 @@ extension SideMenuVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Channels"
+        return NSLocalizedString("Channels", comment: "")
     }
     
 }

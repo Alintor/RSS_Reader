@@ -49,9 +49,9 @@ class FeedVC: UIViewController {
     func setTitle() {
         switch requestType {
         case .all:
-            navigationItem.title = "All Feeds"
+            navigationItem.title = NSLocalizedString("All_feeds", comment: "")
         case .favorites:
-            navigationItem.title = "Favorites"
+            navigationItem.title = NSLocalizedString("Favorites", comment: "")
         case .withLink(_):
             navigationItem.title = channels.first?.title ?? ""
             
@@ -85,7 +85,12 @@ class FeedVC: UIViewController {
                 self.tableView.reloadData()
                 self.setTitle()
                 if self.channels.count == 0 {
-                    self.showEmptyDataWithTitle("Empty")
+                    if case RequestType.favorites = self.requestType {
+                        self.showEmptyDataWithTitle(NSLocalizedString("Empty_favorites", comment: ""))
+                    } else {
+                        self.showEmptyDataWithTitle(NSLocalizedString("Empty_feeds", comment: ""))
+                    }
+                    
                 } else {
                     self.hideEmptyData()
                 }

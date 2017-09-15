@@ -6,11 +6,15 @@ class AddChannelVC: UIViewController {
     
     @IBOutlet weak var textFieldsView: UIView!
     @IBOutlet weak var channelLinkField: TextFieldWithImage!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var addButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         channelLinkField.setActiveImage(name: "icn_web")
+        channelLinkField.placeholder = NSLocalizedString("URL_address", comment: "")
+        addButton.setTitle(NSLocalizedString("Add", comment: ""), for: .normal)
+        addKeyboardObservers(scrollView: scrollView)
         
     }
     
@@ -21,7 +25,7 @@ class AddChannelVC: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         if channelLinkField.text == nil || channelLinkField.text == "" {
-            showErrorWithText("Empty!")
+            showErrorWithText(NSLocalizedString("Error_empty_field", comment: ""))
         } else {
         
             if let channelLink = getCorrectUrlStringFrom(channelLinkField.text!) {
@@ -36,7 +40,7 @@ class AddChannelVC: UIViewController {
                 })
                 
             } else {
-                showErrorWithText("Not correct!")
+                showErrorWithText(NSLocalizedString("Error_not_correct_url", comment: ""))
             }
         }
         
@@ -63,6 +67,7 @@ class AddChannelVC: UIViewController {
     func showErrorWithText(_ textError:String) {
         textFieldsView.layer.borderWidth = 2
         textFieldsView.layer.borderColor = UIColor.red.cgColor
+        AlertManager.shared.showAlert(message: textError)
     }
 
 

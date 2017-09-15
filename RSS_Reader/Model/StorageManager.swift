@@ -179,7 +179,7 @@ class StorageManager: NSObject {
                 groupTitle = channel.title
             } else {
                 groupLink = ""
-                groupTitle = "UNKNOWN"
+                groupTitle = NSLocalizedString("Unknown", comment: "")
             }
             if let index = groups.index(where: { (feedGroup) -> Bool in
                 feedGroup.link == groupLink
@@ -195,7 +195,7 @@ class StorageManager: NSObject {
     
     func addChannelWithLink(_ link:String, finish: @escaping (SimpleResponse) -> Void) {
         if checkExistenceOfEntity(String(describing: Channel.self), withLink: link) {
-            finish(SimpleResponse.failure(errorText: "Already Exist"))
+            finish(SimpleResponse.failure(errorText: NSLocalizedString("Error_already_exist", comment: "")))
         } else {
         
             rssParser.getChannelTitleFromLink(link) { (channelTitle) in
@@ -203,7 +203,7 @@ class StorageManager: NSObject {
                     self.addChannelWithTitle(title: title, link: link)
                     finish(.success)
                 } else {
-                    finish(.failure(errorText: "It's not RSS!"))
+                    finish(.failure(errorText: NSLocalizedString("Error_not_rss", comment: "")))
                 }
             }
         }

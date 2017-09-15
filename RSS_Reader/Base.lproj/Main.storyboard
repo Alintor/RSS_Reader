@@ -241,6 +241,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="RSS Reader" id="KuI-7b-0UC"/>
                     <connections>
+                        <outlet property="allFeedLbl" destination="jwd-7U-eSE" id="FGq-0P-Lgi"/>
+                        <outlet property="favoritesLbl" destination="FJC-DP-941" id="Hsk-sg-Tb5"/>
                         <outlet property="tableView" destination="wrv-RM-MvC" id="nTJ-L6-oj7"/>
                     </connections>
                 </viewController>
@@ -264,10 +266,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-4K-Sda">
-                                        <rect key="frame" x="0.0" y="0.0" width="414.66666666666669" height="224"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter URL of the channel to add it" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-oh-QJC">
-                                                <rect key="frame" x="8" y="8" width="398.66666666666669" height="208"/>
+                                                <rect key="frame" x="8" y="8" width="398" height="208"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -282,13 +284,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DY0-Bf-Pgq">
-                                        <rect key="frame" x="16" y="225" width="382.66666666666669" height="50"/>
+                                        <rect key="frame" x="16" y="225" width="382" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UwD-1X-qik" customClass="TextFieldWithImage" customModule="RSS_Reader" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UwD-1X-qik" customClass="TextFieldWithImage" customModule="RSS_Reader" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Ob6-nu-1Ei" id="5CT-03-ZWz"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -311,12 +316,13 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REF-fQ-5m3">
-                                        <rect key="frame" x="15.666666666666657" y="283" width="382.66666666666663" height="50"/>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REF-fQ-5m3">
+                                        <rect key="frame" x="16" y="283" width="382" height="50"/>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.20392156859999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8Q2-fj-fQP"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="Enter">
                                             <color key="titleColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -370,7 +376,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="REF-fQ-5m3" id="9ID-BI-Noe"/>
                         <outlet property="channelLinkField" destination="UwD-1X-qik" id="TOg-G5-GiS"/>
+                        <outlet property="scrollView" destination="twb-eN-Bf3" id="xbX-E7-Fk3"/>
                         <outlet property="textFieldsView" destination="DY0-Bf-Pgq" id="zHq-pU-LFo"/>
                     </connections>
                 </viewController>
