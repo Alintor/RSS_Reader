@@ -37,20 +37,6 @@ class SideMenuVC: UIViewController {
     }
     
 
-    
-    // MARK: - Navigation
-
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SEGUE_CENTER_CONTROLLER {
-            if let feedVC = segue.destination as? FeedVC,
-                let requestType = sender as? RequestType {
-                feedVC.requestType = requestType
-            }
-        }
-    }
-    
-
 }
 
 extension SideMenuVC : UITableViewDataSource {

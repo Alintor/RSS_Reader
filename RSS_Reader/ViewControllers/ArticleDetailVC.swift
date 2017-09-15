@@ -1,4 +1,5 @@
 
+fileprivate let SEGUE_WEB_ARTICLE = "openArticleInWeb"
 
 import UIKit
 
@@ -47,5 +48,21 @@ class ArticleDetailVC: UIViewController {
         StorageManager.shared.manageFavoriteArticleWithLink(article.link)
         refreshFavoriteButtonIcon()
     }
+    
+    @IBAction func openWebAction(_ sender: Any) {
+        performSegue(withIdentifier: SEGUE_WEB_ARTICLE, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SEGUE_WEB_ARTICLE {
+            if let navVC = segue.destination as? UINavigationController,
+                let webVC = navVC.topViewController as? WebviewVC {
+                webVC.link = article.link
+            }
+        }
+        
+    }
+
+    
 
 }

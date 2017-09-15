@@ -326,6 +326,9 @@
                                     <constraint firstAttribute="height" constant="30" id="ko5-9S-pep"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="openWebAction:" destination="ksh-Fn-pcT" eventType="touchUpInside" id="MHm-9m-JFB"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="13E-uy-d02">
                                 <rect key="frame" x="0.0" y="229" width="414" height="449"/>
@@ -369,11 +372,76 @@
                         <outlet property="imageHeight" destination="Uho-5p-PwY" id="qFM-Pk-43z"/>
                         <outlet property="pubDate" destination="rtd-mw-Mpn" id="tDW-UV-vIf"/>
                         <outlet property="titleViewHeight" destination="eSC-fz-5ae" id="WgQ-vw-cQf"/>
+                        <segue destination="qrp-bm-xwm" kind="presentation" identifier="openArticleInWeb" id="ksj-vi-62i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orx-d9-XS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1645.5999999999999" y="-645.42728635682158"/>
+        </scene>
+        <!--WebviewVC-->
+        <scene sceneID="vvS-au-36t">
+            <objects>
+                <viewController id="PeH-Ej-WGE" customClass="WebviewVC" customModule="RSS_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d7n-6h-JuA"/>
+                        <viewControllerLayoutGuide type="bottom" id="F5v-7o-b19"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yOU-JC-lC8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYG-EY-XLM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-4H-Znz">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="1w2-il-BfN">
+                                        <connections>
+                                            <action selector="goBack" destination="YYG-EY-XLM" id="IyD-ba-N2F"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" id="GoL-o5-uxp">
+                                        <connections>
+                                            <action selector="goForward" destination="YYG-EY-XLM" id="yYJ-p5-sw5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oh4-qp-PbG"/>
+                                    <barButtonItem title="Item" id="Hec-qk-8ke">
+                                        <connections>
+                                            <action selector="reload" destination="YYG-EY-XLM" id="LLa-KW-yiH"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YYG-EY-XLM" secondAttribute="trailing" id="Zvu-Df-65k"/>
+                            <constraint firstItem="t8U-4H-Znz" firstAttribute="top" secondItem="YYG-EY-XLM" secondAttribute="bottom" id="euQ-gN-k7P"/>
+                            <constraint firstItem="F5v-7o-b19" firstAttribute="top" secondItem="t8U-4H-Znz" secondAttribute="bottom" id="hei-gM-afX"/>
+                            <constraint firstItem="t8U-4H-Znz" firstAttribute="leading" secondItem="yOU-JC-lC8" secondAttribute="leading" id="ksR-Xk-6xn"/>
+                            <constraint firstAttribute="trailing" secondItem="t8U-4H-Znz" secondAttribute="trailing" id="o72-du-nFS"/>
+                            <constraint firstItem="YYG-EY-XLM" firstAttribute="leading" secondItem="yOU-JC-lC8" secondAttribute="leading" id="uG8-DN-nWp"/>
+                            <constraint firstItem="YYG-EY-XLM" firstAttribute="top" secondItem="yOU-JC-lC8" secondAttribute="top" id="wPt-xG-4ri"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bG3-hI-U1t">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="zoj-Et-6LE">
+                            <connections>
+                                <action selector="closeBtnAction:" destination="PeH-Ej-WGE" id="2dx-M5-Mew"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="YYG-EY-XLM" id="B66-Ln-I3e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qo0-1Q-Far" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3410.144927536232" y="-640.76086956521749"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bt1-W0-9Vh">
@@ -454,6 +522,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGn-LJ-70m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1650.4000000000001" y="50.824587706146929"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tsh-uY-3T3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qrp-bm-xwm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J3b-wK-VOD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PeH-Ej-WGE" kind="relationship" relationship="rootViewController" id="r7C-jW-Kt0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P8V-cA-EMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2502.898550724638" y="-640.76086956521749"/>
         </scene>
     </scenes>
     <resources>
