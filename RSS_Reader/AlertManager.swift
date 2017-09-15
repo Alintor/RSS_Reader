@@ -21,7 +21,7 @@ class AlertManager: NSObject {
         topWindow.windowLevel = UIWindowLevelAlert + 1
         
         let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.view.tintColor = UIColor.blue
+        alertController.view.tintColor = ALERT_TINT_COLOR
         if isToast {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 topWindow.isHidden = true

@@ -174,9 +174,9 @@ extension FeedVC : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 25.0/255.0, green: 52.0/255.0, blue: 65.0/255.0, alpha: 1)
+        view.tintColor = SECTION_BG_COLOR
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.textLabel?.textColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1)
+            headerView.textLabel?.textColor = SECTION_TITLE_COLOR
         }
     }
     

@@ -13,7 +13,7 @@ class TextFieldWithImage: UITextField {
         let imageView:UIImageView = UIImageView.init(frame: view.bounds)
         imageView.image = image
         imageView.contentMode = UIViewContentMode.center
-        imageView.tintColor = UIColor(red: 25.0/255.0, green: 52.0/255.0, blue: 65.0/255.0, alpha: 1)
+        imageView.tintColor = TEXT_FIELD_IMAGE_TINT_COLOR
         view.addSubview(imageView)
         
         self.leftViewMode = UITextFieldViewMode.always

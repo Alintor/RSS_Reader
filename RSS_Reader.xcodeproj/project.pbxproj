@@ -32,6 +32,7 @@
 		A87A0A871F6BE1B400DB317B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A87A0A861F6BE1B400DB317B /* Localizable.strings */; };
 		A87A0A891F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */; };
 		A87A0A8C1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */; };
+		A87A0A8E1F6BEA0F00DB317B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8D1F6BEA0F00DB317B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		A87A0A861F6BE1B400DB317B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+KeyboardHandling.swift"; path = "Extensions/UIViewController+KeyboardHandling.swift"; sourceTree = "<group>"; };
 		A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+UITextFieldDelegate.swift"; path = "Extensions/UIViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		A87A0A8D1F6BEA0F00DB317B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				A84E63EA1F690B5600350975 /* AppDelegate.swift */,
 				A87A0A841F6BE0DB00DB317B /* AlertManager.swift */,
+				A87A0A8D1F6BEA0F00DB317B /* Constants.swift */,
 				A87A0A8A1F6BE79100DB317B /* Extensions */,
 				A84E64171F693A3900350975 /* Views */,
 				A84E64121F692F4700350975 /* ViewControllers */,
@@ -330,6 +333,7 @@
 				A84E64071F69117D00350975 /* Channel+CoreDataProperties.swift in Sources */,
 				A84E64191F695A4900350975 /* ArticleDetailVC.swift in Sources */,
 				A87A0A831F6BDCB500DB317B /* TextFieldWithImage.swift in Sources */,
+				A87A0A8E1F6BEA0F00DB317B /* Constants.swift in Sources */,
 				A84E63EB1F690B5600350975 /* AppDelegate.swift in Sources */,
 				A84E64061F69117D00350975 /* Channel+CoreDataClass.swift in Sources */,
 				A84E640E1F69290200350975 /* Article+CoreDataClass.swift in Sources */,
