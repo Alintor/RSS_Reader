@@ -19,6 +19,8 @@ class ArticleDetailVC: UIViewController {
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var titleViewHeight: NSLayoutConstraint!
     @IBOutlet weak var articleCardView: UIView!
+    @IBOutlet weak var openBtn: UIButton!
+    
     
     
     var article:Article!
@@ -28,7 +30,7 @@ class ArticleDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        openBtn.setTitle(NSLocalizedString("Open_browser", comment: ""), for: .normal)
         refreshData()
     }
     

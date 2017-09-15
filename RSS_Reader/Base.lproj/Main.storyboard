@@ -289,7 +289,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-4K-Sda">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter URL of the channel to add it" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-oh-QJC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter URL of the channel to add it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-oh-QJC">
                                                 <rect key="frame" x="8" y="8" width="398" height="208"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -548,6 +548,7 @@
                         <outlet property="articleTitle" destination="GVg-Uy-rTs" id="2LD-Uh-C1l"/>
                         <outlet property="favoriteBtn" destination="ywD-Y5-xw0" id="nE3-ML-lWF"/>
                         <outlet property="imageHeight" destination="1Rp-VP-s6h" id="bAs-Ch-NDp"/>
+                        <outlet property="openBtn" destination="sPi-ua-wXl" id="Vsd-5J-BIt"/>
                         <outlet property="pubDate" destination="7fw-Zz-xci" id="RND-fY-MaY"/>
                         <outlet property="titleViewHeight" destination="LGm-KE-CvQ" id="aYI-TS-8u7"/>
                         <segue destination="qrp-bm-xwm" kind="presentation" identifier="openArticleInWeb" id="ksj-vi-62i"/>
