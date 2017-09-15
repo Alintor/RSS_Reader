@@ -12,6 +12,10 @@ class FeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var emptyDataView: UIView!
+    @IBOutlet weak var emptyDataTitle: UILabel!
+    
+    
     
     var channels = [FeedGroup]()
     
@@ -49,6 +53,14 @@ class FeedVC: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    func showEmptyDataWithTitle(_ title:String) {
+        emptyDataTitle.text = title
+        tableView.isHidden = true
+    }
+    
+    func hideEmptyData() {
+        tableView.isHidden = false
+    }
     
     
     func refreshData(useCache:Bool = true) {
@@ -62,6 +74,11 @@ class FeedVC: UIViewController {
             if let results = results {
                 self.channels = results
                 self.tableView.reloadData()
+                if self.channels.count == 0 {
+                    self.showEmptyDataWithTitle("Empty")
+                } else {
+                    self.hideEmptyData()
+                }
             }
         })
     }

@@ -21,6 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMt-rg-rVM">
+                                <rect key="frame" x="82.333333333333314" y="293.33333333333331" width="250" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2f-gB-lwJ">
+                                        <rect key="frame" x="8" y="8" width="234" height="134"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="U2f-gB-lwJ" secondAttribute="bottom" constant="8" id="Jxa-n6-yg5"/>
+                                    <constraint firstAttribute="trailing" secondItem="U2f-gB-lwJ" secondAttribute="trailing" constant="8" id="X51-If-EpG"/>
+                                    <constraint firstItem="U2f-gB-lwJ" firstAttribute="top" secondItem="CMt-rg-rVM" secondAttribute="top" constant="8" id="gBO-CG-6mC"/>
+                                    <constraint firstAttribute="height" constant="150" id="lDj-V1-Egq"/>
+                                    <constraint firstAttribute="width" constant="250" id="oFY-UD-UX2"/>
+                                    <constraint firstItem="U2f-gB-lwJ" firstAttribute="leading" secondItem="CMt-rg-rVM" secondAttribute="leading" constant="8" id="txL-8s-ciS"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zG2-a3-oZ7">
                                 <rect key="frame" x="0.0" y="108" width="414" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,8 +60,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zG2-a3-oZ7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="84B-7g-1I2"/>
+                            <constraint firstItem="CMt-rg-rVM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FU2-Jm-MC1"/>
                             <constraint firstItem="c6j-be-ErJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gi3-gj-m5S"/>
                             <constraint firstAttribute="trailing" secondItem="c6j-be-ErJ" secondAttribute="trailing" id="MZa-9f-eVt"/>
+                            <constraint firstItem="CMt-rg-rVM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NQb-FD-Ugq"/>
                             <constraint firstItem="zG2-a3-oZ7" firstAttribute="top" secondItem="c6j-be-ErJ" secondAttribute="bottom" id="gMm-o7-vSE"/>
                             <constraint firstAttribute="trailing" secondItem="zG2-a3-oZ7" secondAttribute="trailing" id="gcq-uC-IFC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zG2-a3-oZ7" secondAttribute="bottom" id="lWC-5R-JBf"/>
@@ -50,6 +72,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="1Dp-ux-hng"/>
                     <connections>
+                        <outlet property="emptyDataTitle" destination="U2f-gB-lwJ" id="BLd-Cf-lKu"/>
+                        <outlet property="emptyDataView" destination="CMt-rg-rVM" id="mbj-BD-r3z"/>
                         <outlet property="searchBar" destination="c6j-be-ErJ" id="F4k-g3-I1F"/>
                         <outlet property="tableView" destination="zG2-a3-oZ7" id="2ig-P8-Mjt"/>
                         <segue destination="ksh-Fn-pcT" kind="show" identifier="articleDetailSegue" id="Xba-zY-2Y8"/>
