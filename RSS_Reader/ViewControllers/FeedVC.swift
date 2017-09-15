@@ -20,7 +20,6 @@ class FeedVC: UIViewController {
     var channels = [FeedGroup]()
     
     var requestType = RequestType.all
-    var titleName = "All feed"
     
     
     var selectedSection = 0
@@ -31,7 +30,6 @@ class FeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = titleName
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
@@ -46,6 +44,18 @@ class FeedVC: UIViewController {
         
         refreshData()
         
+    }
+    
+    func setTitle() {
+        switch requestType {
+        case .all:
+            navigationItem.title = "All Feeds"
+        case .favorites:
+            navigationItem.title = "Favorites"
+        case .withLink(_):
+            navigationItem.title = channels.first?.title ?? ""
+            
+        }
     }
     
     func updateData() {
@@ -65,7 +75,6 @@ class FeedVC: UIViewController {
     
     func refreshData(useCache:Bool = true) {
         
-        
         var searchText = searchBar.text
         if searchText == "" {
             searchText = nil
@@ -74,6 +83,7 @@ class FeedVC: UIViewController {
             if let results = results {
                 self.channels = results
                 self.tableView.reloadData()
+                self.setTitle()
                 if self.channels.count == 0 {
                     self.showEmptyDataWithTitle("Empty")
                 } else {
@@ -156,6 +166,13 @@ extension FeedVC : UITableViewDelegate {
         selectedRow = indexPath.row
         
         performSegue(withIdentifier: SEGUE_DETAIL, sender: article)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 25.0/255.0, green: 52.0/255.0, blue: 65.0/255.0, alpha: 1)
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1)
+        }
     }
     
 }

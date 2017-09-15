@@ -28,6 +28,7 @@ class RSSParser: NSObject {
                     let dateString = item["pubDate"].element?.text
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+                    dateFormatter.locale = Locale(identifier: "en_US")
                     let pubDate = dateFormatter.date(from: dateString!)
                     let article = FeedItem(title: (item["title"].element?.text)!,
                                                 desc: item["description"].element?.text,

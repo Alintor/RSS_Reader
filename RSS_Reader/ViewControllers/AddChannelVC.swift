@@ -5,13 +5,12 @@ import UIKit
 class AddChannelVC: UIViewController {
     
     @IBOutlet weak var textFieldsView: UIView!
-    @IBOutlet weak var channelLinkField: UITextField!
-    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var channelLinkField: TextFieldWithImage!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        channelLinkField.setActiveImage(name: "icn_web")
         
     }
     
@@ -62,11 +61,8 @@ class AddChannelVC: UIViewController {
     }
     
     func showErrorWithText(_ textError:String) {
-        errorView.isHidden = false
-    }
-    
-    func hideError() {
-        errorView.isHidden = true
+        textFieldsView.layer.borderWidth = 2
+        textFieldsView.layer.borderColor = UIColor.red.cgColor
     }
 
 

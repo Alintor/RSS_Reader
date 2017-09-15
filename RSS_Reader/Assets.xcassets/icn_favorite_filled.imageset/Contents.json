@@ -10,12 +10,15 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "favorite_filled.png",
+      "filename" : "favorite_sel.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

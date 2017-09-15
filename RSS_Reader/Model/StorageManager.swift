@@ -353,10 +353,7 @@ class StorageManager: NSObject {
     }()
     
     
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: "RSS_Reader", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
-    }()
+    lazy var managedObjectModel: NSManagedObjectModel = NSManagedObjectModel.mergedModel(from: nil)!
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
@@ -369,7 +366,7 @@ class StorageManager: NSObject {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
             dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
             dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            let wrappedError = NSError(domain: "ERROR_DOMAIN", code: 9999, userInfo: dict)
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }

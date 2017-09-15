@@ -44,7 +44,7 @@ class ArticleDetailVC: UIViewController {
         if let imageLink = article.imageLink {
             articleImage.kf.indicatorType = .activity
             articleImage.kf.setImage(with: URL(string: imageLink))
-            imageHeight.constant = titleViewHeight.constant * 3
+            imageHeight.constant = titleViewHeight.constant * 2.5
         } else {
             imageHeight.constant = titleViewHeight.constant
             articleImage.image = nil
