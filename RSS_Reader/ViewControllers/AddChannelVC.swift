@@ -8,11 +8,14 @@ class AddChannelVC: UIViewController {
     @IBOutlet weak var channelLinkField: TextFieldWithImage!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var titleLbl: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         channelLinkField.setActiveImage(name: "icn_web")
         channelLinkField.placeholder = NSLocalizedString("URL_address", comment: "")
+        titleLbl.text = NSLocalizedString("Add_channel_text", comment: "")
         addButton.setTitle(NSLocalizedString("Add", comment: ""), for: .normal)
         addKeyboardObservers(scrollView: scrollView)
         

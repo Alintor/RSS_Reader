@@ -401,6 +401,7 @@
                         <outlet property="channelLinkField" destination="UwD-1X-qik" id="TOg-G5-GiS"/>
                         <outlet property="scrollView" destination="twb-eN-Bf3" id="xbX-E7-Fk3"/>
                         <outlet property="textFieldsView" destination="DY0-Bf-Pgq" id="zHq-pU-LFo"/>
+                        <outlet property="titleLbl" destination="m5k-oh-QJC" id="rH7-m0-pC0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pay-fQ-0I5" userLabel="First Responder" sceneMemberID="firstResponder"/>
