@@ -73,7 +73,12 @@ extension SideMenuVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return NSLocalizedString("Channels", comment: "")
+        if channels.count > 0 {
+            return NSLocalizedString("Channels", comment: "")
+        } else {
+            return nil
+        }
+        
     }
     
 }
