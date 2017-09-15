@@ -339,6 +339,7 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="5Dd-he-iNZ" firstAttribute="top" secondItem="4zO-hf-FFQ" secondAttribute="bottom" id="3oh-yD-Oz3"/>
                             <constraint firstItem="13E-uy-d02" firstAttribute="top" secondItem="CUz-LV-pu8" secondAttribute="bottom" id="4Iq-DP-NxZ"/>
@@ -356,6 +357,10 @@
                             <constraint firstItem="sPi-ua-wXl" firstAttribute="top" secondItem="13E-uy-d02" secondAttribute="bottom" constant="8" id="ysT-I4-B36"/>
                             <constraint firstItem="CUz-LV-pu8" firstAttribute="leading" secondItem="oUM-a7-q42" secondAttribute="leading" id="zS7-s9-RtM"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rqG-J1-xRJ" appends="YES" id="6I9-h2-UqJ"/>
+                            <outletCollection property="gestureRecognizers" destination="aOR-AK-SaA" appends="YES" id="Fyd-yp-Qdz"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="aUm-mb-gpG">
                         <barButtonItem key="rightBarButtonItem" image="icn_favorite_bordered" id="ywD-Y5-xw0">
@@ -376,6 +381,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orx-d9-XS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="rqG-J1-xRJ">
+                    <connections>
+                        <action selector="goNextArticle:" destination="ksh-Fn-pcT" id="jIi-fU-u6q"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="aOR-AK-SaA">
+                    <connections>
+                        <action selector="goPrevArticle:" destination="ksh-Fn-pcT" id="dK9-45-hdr"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1645.5999999999999" y="-645.42728635682158"/>
         </scene>

@@ -18,6 +18,10 @@ class FeedVC: UIViewController {
     var requestType = RequestType.all
     var titleName = "All feed"
     
+    
+    var selectedSection = 0
+    var selectedRow = 0
+    
     var refreshControl: UIRefreshControl!
     
 
@@ -69,6 +73,7 @@ class FeedVC: UIViewController {
             if let article = sender as? Article {
                 let detailVC = segue.destination as! ArticleDetailVC
                 detailVC.article = article
+                detailVC.delegate = self
             }
         }
 
@@ -130,6 +135,8 @@ extension FeedVC : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let article = channels[indexPath.section].feed[indexPath.row]
+        selectedSection = indexPath.section
+        selectedRow = indexPath.row
         
         performSegue(withIdentifier: SEGUE_DETAIL, sender: article)
     }
@@ -161,5 +168,45 @@ extension FeedVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         refreshData()
+    }
+}
+
+extension FeedVC: ArticleDetailFlipper {
+    func nextArticle() -> Article? {
+        let newRow = selectedRow + 1
+        if newRow < channels[selectedSection].feed.count {
+            selectedRow = newRow
+            tableView.scrollToRow(at: IndexPath(row: selectedRow, section: selectedSection), at: .top, animated: false)
+            return channels[selectedSection].feed[selectedRow]
+            
+        } else {
+            let newSection = selectedSection + 1
+            if newSection < channels.count {
+                selectedSection = newSection
+                selectedRow = 0
+                tableView.scrollToRow(at: IndexPath(row: selectedRow, section: selectedSection), at: .top, animated: false)
+                return channels[selectedSection].feed[selectedRow]
+            } else {
+                return nil
+            }
+        }
+    }
+    func prevArticle() -> Article? {
+        let newRow = selectedRow - 1
+        if newRow >= 0 {
+            selectedRow = newRow
+            tableView.scrollToRow(at: IndexPath(row: selectedRow, section: selectedSection), at: .top, animated: false)
+            return channels[selectedSection].feed[selectedRow]
+        } else {
+            let newSection = selectedSection - 1
+            if newSection < 0 {
+                return nil
+            } else {
+                selectedSection = newSection
+                selectedRow = channels[selectedSection].feed.count - 1
+                tableView.scrollToRow(at: IndexPath(row: selectedRow, section: selectedSection), at: .top, animated: false)
+                return channels[selectedSection].feed[selectedRow]
+            }
+        }
     }
 }

@@ -3,6 +3,14 @@ fileprivate let SEGUE_WEB_ARTICLE = "openArticleInWeb"
 
 import UIKit
 
+
+protocol ArticleDetailFlipper {
+    func nextArticle() -> Article?
+    func prevArticle() -> Article?
+}
+
+
+
 class ArticleDetailVC: UIViewController {
     
     @IBOutlet weak var articleTitle: UILabel!
@@ -16,10 +24,17 @@ class ArticleDetailVC: UIViewController {
     @IBOutlet weak var titleViewHeight: NSLayoutConstraint!
     
     var article:Article!
+    var delegate:ArticleDetailFlipper?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshData()
+        
+    }
+    
+    func refreshData() {
         articleTitle.text = article.title
         articleDescription.text = article.desc
         let dateFormatter = DateFormatter()
@@ -29,8 +44,10 @@ class ArticleDetailVC: UIViewController {
         if let imageLink = article.imageLink {
             articleImage.kf.indicatorType = .activity
             articleImage.kf.setImage(with: URL(string: imageLink))
+            imageHeight.constant = titleViewHeight.constant * 3
         } else {
             imageHeight.constant = titleViewHeight.constant
+            articleImage.image = nil
         }
         
         refreshFavoriteButtonIcon()
@@ -52,6 +69,21 @@ class ArticleDetailVC: UIViewController {
     @IBAction func openWebAction(_ sender: Any) {
         performSegue(withIdentifier: SEGUE_WEB_ARTICLE, sender: nil)
     }
+    
+    
+    @IBAction func goNextArticle(_ sender: Any) {
+        if let nextArticle = delegate?.nextArticle() {
+            article = nextArticle
+            refreshData()
+        }
+    }
+    @IBAction func goPrevArticle(_ sender: Any) {
+        if let prevArticle = delegate?.prevArticle() {
+            article = prevArticle
+            refreshData()
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SEGUE_WEB_ARTICLE {
