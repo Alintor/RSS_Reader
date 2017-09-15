@@ -77,7 +77,7 @@ class FeedVC: UIViewController {
                 self.channels = results
                 self.tableView.reloadData()
                 self.setTitle()
-                if self.channels.count == 0 {
+                if self.channels.count == 0 && searchText == nil {
                     if case RequestType.favorites = self.requestType {
                         self.showEmptyDataWithTitle(NSLocalizedString("Empty_favorites", comment: ""))
                     } else {
