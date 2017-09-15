@@ -2,8 +2,9 @@
 
 import UIKit
 
-let MAIN_DARK_COLOR = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1)
-let MAIN_WHITE_COLOR = UIColor(red: 25.0/255.0, green: 52.0/255.0, blue: 65.0/255.0, alpha: 1)
+let MAIN_WHITE_COLOR = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1)
+let MAIN_DARK_COLOR = UIColor(red: 25.0/255.0, green: 52.0/255.0, blue: 65.0/255.0, alpha: 1)
+let MAIN_ACTIENT_COLOR = UIColor(red: 190.0/255.0, green: 66.0/255.0, blue: 72.0/255.0, alpha: 1)
 
 
 let SECTION_TITLE_COLOR = MAIN_WHITE_COLOR
@@ -11,3 +12,6 @@ let SECTION_BG_COLOR = MAIN_DARK_COLOR
 
 let ALERT_TINT_COLOR = MAIN_DARK_COLOR
 let TEXT_FIELD_IMAGE_TINT_COLOR = MAIN_DARK_COLOR
+let TEXT_FIELD_ERROR_BORDER_COLOR = MAIN_ACTIENT_COLOR
+
+let REFRESH_CONTROL_TINT_COLOR = MAIN_WHITE_COLOR

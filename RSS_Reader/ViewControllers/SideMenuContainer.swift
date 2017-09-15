@@ -16,7 +16,6 @@ class SideMenuContainer: SideMenuController {
         super.init(coder: aDecoder)
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +32,4 @@ class SideMenuContainer: SideMenuController {
             }
         }
     }
-
-
 }

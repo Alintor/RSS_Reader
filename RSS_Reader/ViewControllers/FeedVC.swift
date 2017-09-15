@@ -15,19 +15,14 @@ class FeedVC: UIViewController {
     @IBOutlet weak var emptyDataView: UIView!
     @IBOutlet weak var emptyDataTitle: UILabel!
     
-    
-    
     var channels = [FeedGroup]()
-    
     var requestType = RequestType.all
-    
     
     var selectedSection = 0
     var selectedRow = 0
     
     var refreshControl: UIRefreshControl!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
@@ -38,12 +33,12 @@ class FeedVC: UIViewController {
         }
         
         refreshControl = UIRefreshControl()
-        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.tintColor = REFRESH_CONTROL_TINT_COLOR
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
+        searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        loading(visible:true)
         refreshData()
-        
     }
     
     func setTitle() {
@@ -54,7 +49,6 @@ class FeedVC: UIViewController {
             navigationItem.title = NSLocalizedString("Favorites", comment: "")
         case .withLink(_):
             navigationItem.title = channels.first?.title ?? ""
-            
         }
     }
     
@@ -71,7 +65,6 @@ class FeedVC: UIViewController {
     func hideEmptyData() {
         tableView.isHidden = false
     }
-    
     
     func refreshData(useCache:Bool = true) {
         
@@ -95,6 +88,7 @@ class FeedVC: UIViewController {
                     self.hideEmptyData()
                 }
             }
+            self.loading(visible:false)
         })
     }
     
@@ -114,6 +108,7 @@ class FeedVC: UIViewController {
 
 }
 
+//MARK: - UITableViewDataSource implementation
 
 extension FeedVC : UITableViewDataSource {
     
@@ -161,6 +156,8 @@ extension FeedVC : UITableViewDataSource {
     
 }
 
+//MARK: - UITableViewDelegate implementation
+
 extension FeedVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -181,6 +178,8 @@ extension FeedVC : UITableViewDelegate {
     }
     
 }
+
+//MARK: - UISearchBarDelegate implementation
 
 extension FeedVC: UISearchBarDelegate {
     
@@ -209,6 +208,8 @@ extension FeedVC: UISearchBarDelegate {
         refreshData()
     }
 }
+
+//MARK: - ArticleDetailFlipper implementation
 
 extension FeedVC: ArticleDetailFlipper {
     func nextArticle() -> Article? {

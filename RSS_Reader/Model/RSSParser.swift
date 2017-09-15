@@ -36,7 +36,6 @@ class RSSParser: NSObject {
                                                 imageLink: item["enclosure"].element?.attribute(by: "url")?.text,
                                                 pubDate: pubDate! as NSDate)
                     articles.append(article)
-                    
                 }
                 finish(articles)
                 
@@ -45,7 +44,6 @@ class RSSParser: NSObject {
                 finish(nil)
             }
         }
-        
     }
     
     func getChannelTitleFromLink(_ link:String, finish: @escaping (String?) -> Void) {

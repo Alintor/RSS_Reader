@@ -18,6 +18,33 @@ class AddChannelVC: UIViewController {
         
     }
     
+    //MARK: - Support methods
+    
+    func getCorrectUrlStringFrom(_ currentStr:String) -> String? {
+        let urlStr:String
+        if currentStr.contains("http://") || currentStr.contains("https://") {
+            urlStr = currentStr
+        } else {
+            urlStr = "https://" + currentStr
+        }
+        let urlRegEx = "https?://(?:www\\.)?\\S+(?:/|\\b)"
+        let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
+        
+        if urlTest.evaluate(with: urlStr) {
+            return urlStr
+        } else {
+            return nil
+        }
+    }
+    
+    func showErrorWithText(_ textError:String) {
+        textFieldsView.layer.borderWidth = 2
+        textFieldsView.layer.borderColor = TEXT_FIELD_ERROR_BORDER_COLOR.cgColor
+        AlertManager.shared.showAlert(message: textError)
+    }
+    
+    //MARK: - Actions
+    
     @IBAction func cancelButtonAction(_ sender: Any) {
         
         dismiss(animated: true, completion: nil)
@@ -45,31 +72,5 @@ class AddChannelVC: UIViewController {
         }
         
     }
-    
-    
-    func getCorrectUrlStringFrom(_ currentStr:String) -> String? {
-        let urlStr:String
-        if currentStr.contains("http://") || currentStr.contains("https://") {
-            urlStr = currentStr
-        } else {
-            urlStr = "https://" + currentStr
-        }
-        let urlRegEx = "https?://(?:www\\.)?\\S+(?:/|\\b)"
-        let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
-        
-        if urlTest.evaluate(with: urlStr) {
-            return urlStr
-        } else {
-            return nil
-        }
-    }
-    
-    func showErrorWithText(_ textError:String) {
-        textFieldsView.layer.borderWidth = 2
-        textFieldsView.layer.borderColor = UIColor.red.cgColor
-        AlertManager.shared.showAlert(message: textError)
-    }
-
-
 
 }

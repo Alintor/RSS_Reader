@@ -3,13 +3,10 @@ fileprivate let SEGUE_WEB_ARTICLE = "openArticleInWeb"
 
 import UIKit
 
-
 protocol ArticleDetailFlipper {
     func nextArticle() -> Article?
     func prevArticle() -> Article?
 }
-
-
 
 class ArticleDetailVC: UIViewController {
     
@@ -19,19 +16,16 @@ class ArticleDetailVC: UIViewController {
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var favoriteBtn: UIBarButtonItem!
     
-    
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var titleViewHeight: NSLayoutConstraint!
     
     var article:Article!
     var delegate:ArticleDetailFlipper?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         refreshData()
-        
     }
     
     func refreshData() {
@@ -60,6 +54,8 @@ class ArticleDetailVC: UIViewController {
             favoriteBtn.image = UIImage(named: "icn_favorite_bordered")
         }
     }
+    
+    //MARK: - Actions
 
     @IBAction func favoriteBtnAction(_ sender: Any) {
         StorageManager.shared.manageFavoriteArticleWithLink(article.link)
@@ -70,13 +66,13 @@ class ArticleDetailVC: UIViewController {
         performSegue(withIdentifier: SEGUE_WEB_ARTICLE, sender: nil)
     }
     
-    
     @IBAction func goNextArticle(_ sender: Any) {
         if let nextArticle = delegate?.nextArticle() {
             article = nextArticle
             refreshData()
         }
     }
+    
     @IBAction func goPrevArticle(_ sender: Any) {
         if let prevArticle = delegate?.prevArticle() {
             article = prevArticle
@@ -84,7 +80,7 @@ class ArticleDetailVC: UIViewController {
         }
     }
     
-    
+    //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SEGUE_WEB_ARTICLE {
             if let navVC = segue.destination as? UINavigationController,
@@ -94,7 +90,4 @@ class ArticleDetailVC: UIViewController {
         }
         
     }
-
-    
-
 }

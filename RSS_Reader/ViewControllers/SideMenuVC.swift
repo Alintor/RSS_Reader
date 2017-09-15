@@ -20,9 +20,9 @@ class SideMenuVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
         refreshData()
-        
-
     }
+    
+    //MARK: - Actions
     
     @IBAction func allFeedsAction(_ sender: Any) {
         sideMenuController?.performSegue(withIdentifier: SEGUE_CENTER_CONTROLLER, sender: RequestType.all)
@@ -44,14 +44,14 @@ class SideMenuVC: UIViewController {
 
 }
 
+//MARK: - UITableViewDataSource implementation
+
 extension SideMenuVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return channels.count
-        
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let channel = channels[indexPath.row]
@@ -77,6 +77,8 @@ extension SideMenuVC : UITableViewDataSource {
     }
     
 }
+
+//MARK: - UITableViewDelegate implementation
 
 extension SideMenuVC : UITableViewDelegate {
     

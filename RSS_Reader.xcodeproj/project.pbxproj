@@ -33,6 +33,7 @@
 		A87A0A891F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */; };
 		A87A0A8C1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */; };
 		A87A0A8E1F6BEA0F00DB317B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8D1F6BEA0F00DB317B /* Constants.swift */; };
+		A87A0A901F6BF4FC00DB317B /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+KeyboardHandling.swift"; path = "Extensions/UIViewController+KeyboardHandling.swift"; sourceTree = "<group>"; };
 		A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+UITextFieldDelegate.swift"; path = "Extensions/UIViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		A87A0A8D1F6BEA0F00DB317B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Loading.swift"; path = "Extensions/UIViewController+Loading.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			children = (
 				A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */,
 				A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */,
+				A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				A84E63EB1F690B5600350975 /* AppDelegate.swift in Sources */,
 				A84E64061F69117D00350975 /* Channel+CoreDataClass.swift in Sources */,
 				A84E640E1F69290200350975 /* Article+CoreDataClass.swift in Sources */,
+				A87A0A901F6BF4FC00DB317B /* UIViewController+Loading.swift in Sources */,
 				A84E64001F690CD100350975 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
