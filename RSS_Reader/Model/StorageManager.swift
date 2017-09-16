@@ -241,6 +241,18 @@ class StorageManager: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: UPDATE_FAVORITES_NOTIFICATION), object: nil)
     }
     
+    func getChannels(finish: @escaping ([FeedGroup]?) -> Void) {
+        if let channels = fetchChannels() {
+            var groups = [FeedGroup]()
+            for channel in channels {
+                groups.append(FeedGroup(channel: channel))
+            }
+            finish(groups)
+        } else {
+            finish(nil)
+        }
+    }
+    
     func getChannelsWithRequest(_ request:RequestType, andTitleContains title:String? = nil, useCache:Bool = true, finish: @escaping ([FeedGroup]?) -> Void) {
         if let channels = fetchChannels() {
             let group = DispatchGroup()

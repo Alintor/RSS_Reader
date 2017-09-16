@@ -13,4 +13,4 @@
 "Error_not_correct_url" = "Данный URL адрес некорректен";
 "Error_not_rss" = "Данный URL адрес не RSS";
 "URL_address" = "URL адрес";
-"Unknown" = "НЕИЗВЕСТНО";
+"Unknown" = "Удаленный источник";

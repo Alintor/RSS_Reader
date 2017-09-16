@@ -32,7 +32,7 @@ class SideMenuVC: UIViewController {
     }
     
     func refreshData() {
-        StorageManager.shared.getChannelsWithRequest(.all) { (results) in
+        StorageManager.shared.getChannels { (results) in
             if let results = results {
                 self.channels = results
                 self.tableView.reloadData()
