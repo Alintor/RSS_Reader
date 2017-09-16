@@ -435,7 +435,7 @@
                                         <color key="textColor" red="0.098039215690000001" green="0.20392156859999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kC4-zV-44h">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kC4-zV-44h">
                                         <rect key="frame" x="8" y="224.33333333333331" width="358" height="339.66666666666669"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</string>
@@ -445,8 +445,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7E-es-ZLt">
                                         <rect key="frame" x="8" y="118" width="358" height="70"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVg-Uy-rTs">
-                                                <rect key="frame" x="8" y="8" width="342" height="54"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVg-Uy-rTs">
+                                                <rect key="frame" x="4" y="4" width="350" height="62"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -454,11 +454,11 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.20392156859999999" blue="0.25490196079999999" alpha="0.70200128424657537" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="GVg-Uy-rTs" secondAttribute="trailing" constant="8" id="JbE-It-dSt"/>
+                                            <constraint firstAttribute="trailing" secondItem="GVg-Uy-rTs" secondAttribute="trailing" constant="4" id="JbE-It-dSt"/>
                                             <constraint firstAttribute="height" constant="70" id="LGm-KE-CvQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="GVg-Uy-rTs" secondAttribute="bottom" constant="8" id="YSF-fe-AZ8"/>
-                                            <constraint firstItem="GVg-Uy-rTs" firstAttribute="leading" secondItem="n7E-es-ZLt" secondAttribute="leading" constant="8" id="n4l-0y-cb1"/>
-                                            <constraint firstItem="GVg-Uy-rTs" firstAttribute="top" secondItem="n7E-es-ZLt" secondAttribute="top" constant="8" id="yNW-ea-NnW"/>
+                                            <constraint firstAttribute="bottom" secondItem="GVg-Uy-rTs" secondAttribute="bottom" constant="4" id="YSF-fe-AZ8"/>
+                                            <constraint firstItem="GVg-Uy-rTs" firstAttribute="leading" secondItem="n7E-es-ZLt" secondAttribute="leading" constant="4" id="n4l-0y-cb1"/>
+                                            <constraint firstItem="GVg-Uy-rTs" firstAttribute="top" secondItem="n7E-es-ZLt" secondAttribute="top" constant="4" id="yNW-ea-NnW"/>
                                         </constraints>
                                     </view>
                                 </subviews>
