@@ -205,6 +205,7 @@ class StorageManager: NSObject {
     }
     
     func deleteChannelWithLink(_ link:String) {
+        cleanCacheForChannelWithLink(link)
         let chanelFetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "Channel")
         chanelFetchRequest.predicate = NSPredicate(format: "link == %@", link)
@@ -219,7 +220,6 @@ class StorageManager: NSObject {
             
         }
         
-        cleanCacheForChannelWithLink(link)
         saveContext()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
     }
@@ -233,6 +233,9 @@ class StorageManager: NSObject {
             let articles = try managedObjectContext.fetch(fetchRequest)
             if let article = articles.first as? Article {
                 article.isFavorite = !(article.isFavorite)
+                if !article.isFavorite && article.channel == nil {
+                    self.managedObjectContext.delete(article)
+                }
             }
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
