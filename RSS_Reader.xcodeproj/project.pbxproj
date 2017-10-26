@@ -33,6 +33,7 @@
 		A87A0A8C1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */; };
 		A87A0A8E1F6BEA0F00DB317B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8D1F6BEA0F00DB317B /* Constants.swift */; };
 		A87A0A901F6BF4FC00DB317B /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */; };
+		A8938E7E1FA1E24F0045BE4B /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8938E7D1FA1E24F0045BE4B /* UITableView+Extensions.swift */; };
 		A8BE3E4F1F6C060B0088538F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8BE3E511F6C060B0088538F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+UITextFieldDelegate.swift"; path = "Extensions/UIViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		A87A0A8D1F6BEA0F00DB317B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Loading.swift"; path = "Extensions/UIViewController+Loading.swift"; sourceTree = "<group>"; };
+		A8938E7D1FA1E24F0045BE4B /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITableView+Extensions.swift"; path = "Extensions/UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		A8BE3E4D1F6C06020088538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		A8BE3E4E1F6C06040088538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A8BE3E501F6C060B0088538F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				A87A0A881F6BE78D00DB317B /* UIViewController+KeyboardHandling.swift */,
 				A87A0A8B1F6BE7DC00DB317B /* UIViewController+UITextFieldDelegate.swift */,
 				A87A0A8F1F6BF4FC00DB317B /* UIViewController+Loading.swift */,
+				A8938E7D1FA1E24F0045BE4B /* UITableView+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				A84E640B1F69141500350975 /* RSSParser.swift in Sources */,
 				A87A0A851F6BE0DB00DB317B /* AlertManager.swift in Sources */,
 				A84E64111F692F4200350975 /* FeedVC.swift in Sources */,
+				A8938E7E1FA1E24F0045BE4B /* UITableView+Extensions.swift in Sources */,
 				A84E641F1F6A4B9A00350975 /* AddChannelVC.swift in Sources */,
 				A84E641B1F6966C600350975 /* SideMenuVC.swift in Sources */,
 				A84E640F1F69290200350975 /* Article+CoreDataProperties.swift in Sources */,

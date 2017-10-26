@@ -41,6 +41,7 @@ class RSSParser: NSObject {
                 
             case .failure:
                 print(response.error!.localizedDescription)
+                AlertManager.shared.showAlert(message: response.error!.localizedDescription)
                 finish(nil)
             }
         }

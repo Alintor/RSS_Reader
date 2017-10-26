@@ -1,10 +1,6 @@
-
-
 import UIKit
 import Kingfisher
 
-fileprivate let CELL_NIB_NAME = "FeedItemCell"
-fileprivate let CELL_REUSE_IDENTIFIER = "FeedItemCellIdentifier"
 fileprivate let SEGUE_DETAIL = "articleDetailSegue"
 
 class FeedVC: UIViewController {
@@ -25,7 +21,7 @@ class FeedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
+        tableView.registerReusableCell(FeedItemCell.self)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: UPDATE_CHANNELS_NOTIFICATION), object: nil)
         
         if case RequestType.favorites = requestType {
@@ -136,7 +132,7 @@ extension FeedVC : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = channels[indexPath.section].feed[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_REUSE_IDENTIFIER, for: indexPath) as! FeedItemCell
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as FeedItemCell
         cell.title.text = article.title
         cell.desc.text = article.desc
         

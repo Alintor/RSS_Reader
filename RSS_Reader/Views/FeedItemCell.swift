@@ -2,7 +2,7 @@
 
 import UIKit
 
-class FeedItemCell: UITableViewCell {
+class FeedItemCell: UITableViewCell, Reusable {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
@@ -37,4 +37,17 @@ class FeedItemCell: UITableViewCell {
         }
     }
     
+}
+
+
+protocol Reusable: class {
+    static var reuseIdentifier: String { get }
+    static var nib: UINib { get }
+}
+
+extension Reusable {
+    static var reuseIdentifier: String { return String(describing: Self.self) }
+    static var nib: UINib {
+        return UINib(nibName: String(describing: Self.self), bundle: nil)
+    }
 }
